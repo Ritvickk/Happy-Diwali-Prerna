@@ -28,14 +28,14 @@
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
   *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
-  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
   body{
     font-family:"Mulish",system-ui,sans-serif;
     color:var(--cream);
     background:var(--sky-off);
     background:radial-gradient(130% 90% at 50% -10%, var(--sky-on-top), var(--sky-on-bot) 55%, #05060f 100%);
     line-height:1.6;
-    overflow-x:hidden;
+    overflow-x:clip;
     transition:background 1400ms ease;
     -webkit-font-smoothing:antialiased;
   }
