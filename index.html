@@ -162,14 +162,17 @@
 
   /* ---- Letter overlay ---- */
   .letter-overlay{
-    position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;
-    padding:26px;background:rgba(4,5,12,.78);backdrop-filter:blur(5px);
+    position:fixed;inset:0;z-index:70;display:flex;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:24px 20px;
+    padding-top:calc(24px + env(safe-area-inset-top,0px));
+    padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));
+    background:rgba(4,5,12,.78);backdrop-filter:blur(5px);
     opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s;
   }
   .letter-overlay.open{opacity:1;visibility:visible}
   .letter-card{
     background:linear-gradient(180deg,#fdf4e1,#f6e7c8);color:var(--ink);
-    max-width:500px;width:100%;max-height:84vh;overflow-y:auto;border-radius:18px;
+    max-width:500px;width:100%;margin:auto;border-radius:18px;
     padding:34px 30px 30px;position:relative;
     box-shadow:0 30px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,220,150,.5);
     transform:translateY(20px) scale(.97);transition:transform .5s cubic-bezier(.2,.8,.3,1.1);
@@ -199,7 +202,7 @@
   .wishline .hl.blue{color:var(--blue)}
 
   /* ---- Flip cards ---- */
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+  .cards{display:grid;grid-template-columns:1fr;gap:16px;margin-top:34px}
   .flip{perspective:1000px;cursor:pointer;min-height:190px}
   .flip-inner{position:relative;width:100%;height:100%;min-height:190px;transition:transform .7s cubic-bezier(.2,.8,.3,1);transform-style:preserve-3d}
   .flip.flipped .flip-inner{transform:rotateY(180deg)}
