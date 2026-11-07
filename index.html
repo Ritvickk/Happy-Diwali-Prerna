@@ -28,7 +28,7 @@
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
   *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
-  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
   body{
     font-family:"Mulish",system-ui,sans-serif;
     color:var(--cream);
@@ -162,18 +162,21 @@
 
   /* ---- Letter overlay ---- */
   .letter-overlay{
-    position:fixed;inset:0;z-index:70;display:flex;overflow-y:auto;-webkit-overflow-scrolling:touch;
-    padding:24px 20px;
-    padding-top:calc(24px + env(safe-area-inset-top,0px));
-    padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));
+    position:fixed;inset:0;z-index:70;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
     background:rgba(4,5,12,.78);backdrop-filter:blur(5px);
     opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s;
   }
   .letter-overlay.open{opacity:1;visibility:visible}
+  .letter-inner{
+    min-height:100%;display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+    padding:28px 16px;
+    padding-top:calc(28px + env(safe-area-inset-top,0px));
+    padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));
+  }
   .letter-card{
     background:linear-gradient(180deg,#fdf4e1,#f6e7c8);color:var(--ink);
-    max-width:500px;width:100%;margin:auto;border-radius:18px;
-    padding:34px 30px 30px;position:relative;
+    width:100%;max-width:500px;box-sizing:border-box;border-radius:18px;
+    padding:32px 24px 28px;position:relative;overflow-wrap:break-word;
     box-shadow:0 30px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,220,150,.5);
     transform:translateY(20px) scale(.97);transition:transform .5s cubic-bezier(.2,.8,.3,1.1);
     font-family:"Fraunces",Georgia,serif;
@@ -384,6 +387,7 @@
 
   <!-- LETTER OVERLAY -->
   <div class="letter-overlay" id="letterOverlay">
+    <div class="letter-inner">
     <div class="letter-card" role="dialog" aria-modal="true" aria-label="A letter for Prerna">
       <button class="close" id="closeLetter" aria-label="Close">×</button>
       <h3>Happy Diwali, Bubbuuu</h3>
@@ -393,6 +397,7 @@
       <p>I made you a little corner of the internet again, because you deserve to be celebrated on every day the sky gets brighter, and on all the ordinary ones in between too.</p>
       <p>Here's to a year that glows.</p>
       <p class="sign">I love you.<br/>Yours,<br/><b>Ritvickk</b> 💛💙</p>
+    </div>
     </div>
   </div>
 
@@ -422,8 +427,8 @@
     var n = reduce ? 0 : 14;
     for(var i=0;i<n;i++){
       var s=document.createElement('div'); s.className='spark';
-      s.style.left=(Math.random()*100)+'vw';
-      s.style.top=(Math.random()*100)+'vh';
+      s.style.left=(3+Math.random()*90)+'vw';
+      s.style.top=(4+Math.random()*88)+'vh';
       s.style.animationDelay=(Math.random()*5)+'s';
       s.style.animationDuration=(3.5+Math.random()*3)+'s';
       document.body.appendChild(s);
@@ -443,7 +448,7 @@
   var ov=document.getElementById('letterOverlay');
   document.getElementById('openLetter').addEventListener('click',function(){ov.classList.add('open');});
   document.getElementById('closeLetter').addEventListener('click',function(){ov.classList.remove('open');});
-  ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('open');});
+  ov.addEventListener('click',function(e){if(!e.target.closest('.letter-card'))ov.classList.remove('open');});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')ov.classList.remove('open');});
 
   // ---- Flip cards ----
