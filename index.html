@@ -28,7 +28,7 @@
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
   *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
-  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
   body{
     font-family:"Mulish",system-ui,sans-serif;
     color:var(--cream);
@@ -247,7 +247,7 @@
   @keyframes sparkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1)}}
 
   /* ---- rangoli faint backdrop ---- */
-  .rangoli{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(620px,104vw);opacity:0;z-index:0;pointer-events:none;transition:opacity 1.6s ease}
+  .rangoli{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,94vw);opacity:0;z-index:0;pointer-events:none;transition:opacity 1.6s ease}
   body:not(.lights-off) .rangoli{opacity:.17;animation:rangoliSpin 120s linear infinite}
   @keyframes rangoliSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
